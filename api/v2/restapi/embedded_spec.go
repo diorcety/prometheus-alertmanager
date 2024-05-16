@@ -728,19 +728,19 @@ func init() {
     "receiver": {
       "type": "object",
       "required": [
-        "name",
-        "active",
-        "integrations"
+        "name"
       ],
       "properties": {
         "active": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-nullable": true
         },
         "integrations": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/integration"
-          }
+          },
+          "x-nullable": true
         },
         "name": {
           "type": "string"
@@ -1584,19 +1584,19 @@ func init() {
     "receiver": {
       "type": "object",
       "required": [
-        "name",
-        "active",
-        "integrations"
+        "name"
       ],
       "properties": {
         "active": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-nullable": true
         },
         "integrations": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/integration"
-          }
+          },
+          "x-nullable": true
         },
         "name": {
           "type": "string"

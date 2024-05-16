@@ -510,14 +510,14 @@ definitions:
         type: string
       active:
         type: boolean
+        x-nullable: true
       integrations:
         type: array
+        x-nullable: true
         items:
           $ref: '#/definitions/integration'
     required:
       - name
-      - active
-      - integrations
   integration:
     type: object
     properties:

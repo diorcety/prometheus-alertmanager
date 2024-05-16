@@ -35,11 +35,9 @@ import (
 type Receiver struct {
 
 	// active
-	// Required: true
-	Active *bool `json:"active"`
+	Active *bool `json:"active,omitempty"`
 
 	// integrations
-	// Required: true
 	Integrations []*Integration `json:"integrations"`
 
 	// name
@@ -50,10 +48,6 @@ type Receiver struct {
 // Validate validates this receiver
 func (m *Receiver) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateActive(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateIntegrations(formats); err != nil {
 		res = append(res, err)
@@ -69,19 +63,9 @@ func (m *Receiver) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Receiver) validateActive(formats strfmt.Registry) error {
-
-	if err := validate.Required("active", "body", m.Active); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Receiver) validateIntegrations(formats strfmt.Registry) error {
-
-	if err := validate.Required("integrations", "body", m.Integrations); err != nil {
-		return err
+	if swag.IsZero(m.Integrations) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Integrations); i++ {
